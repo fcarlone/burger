@@ -6,15 +6,15 @@ const connection = require("../config/connection.js")
 // insertOne()
 // updateOne()
 
-let orm = {
-  selectAll: function () {
-
-  },
-  insertOne: function () {
-
-  },
-  updateOne: function () {
-
+var orm = {
+  selectAll: function (tableName, cb) {
+    let queryString = `SELECT * FROM ${tableName};`;
+    connection.query(queryString, function (err, result) {
+      if (err) {
+        throw err;
+      }
+      cb(result);
+    });
   }
 };
 

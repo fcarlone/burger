@@ -1,1 +1,44 @@
 <h1>Build-Da-Burger</h1>
+
+<p>test object {{test}}</p>
+
+{{!-- List burgers --}}
+<ul>
+  {{#each burgers}}
+  <li>
+    <p>
+      {{this.id}} -- {{this.burger_name}}
+    </p>
+  </li>
+  {{/each}}
+</ul>
+
+<h2>Eat-Da-Burger</h2>
+<form id="add-burger">
+  <textarea type="text" name="burger"></textarea>
+  <button type="submit" class="btn btn-primary mb-2">Submit</button>
+</form>
+
+
+<script type="text/javascript">
+  // Handle add burger on-submit event
+  $("#add-burger").on("submit", function (event) {
+    event.preventDefault();
+
+    let addBurger = {
+      burger_name: $("#add-burger [name=burger]").val()
+    }
+    console.log("add new burger", addBurger)
+
+    // Send the POST requestl
+    $.ajax("/api/burgers", {
+      type: "POST",
+      data: addBurger
+    }).then(function () {
+      console.log('burger added');
+      // Reload the page to update burger list
+      location.reload();
+    })
+
+  });
+</script>
