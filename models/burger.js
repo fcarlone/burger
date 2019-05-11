@@ -8,7 +8,13 @@ let burger = {
       console.log('response from orm', res);
       cb(res);
     });
+  },
+  insertOne: function (columnName, values, cb) {
+    orm.insertOne("burgers", columnName, values, function (result) {
+      cb(result)
+    });
   }
+
 };
 
 

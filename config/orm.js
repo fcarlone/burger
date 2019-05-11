@@ -15,6 +15,19 @@ var orm = {
       }
       cb(result);
     });
+  },
+  insertOne: function (tableName, columnName, values, cb) {
+    console.log()
+    let queryString = `INSERT INTO ${tableName} (${columnName[0]}, ${columnName[1]}) VALUES (${values[0]}, ${values[1]});`;
+    console.log('insertOne queryString', queryString)
+
+    connection.query("INSERT INTO burgers (burger_name, devoured) VALUES ('NEw Test', false);", values, function (err, result) {
+      if (err) {
+        throw err;
+      }
+
+      cb(result);
+    })
   }
 };
 

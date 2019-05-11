@@ -26,19 +26,18 @@
     event.preventDefault();
 
     let addBurger = {
-      burger_name: $("#add-burger [name=burger]").val()
+      burger_name: $("#add-burger [name=burger]").val().trim()
+
     }
     console.log("add new burger", addBurger)
 
     // Send the POST requestl
-    $.ajax("/api/burgers", {
-      type: "POST",
-      data: addBurger
-    }).then(function () {
-      console.log('burger added');
+    $.post("/api/burgers", addBurger, function (data) {
+      console.log('burger added', data);
       // Reload the page to update burger list
-      location.reload();
+      //location.reload()
     })
 
   });
+
 </script>
