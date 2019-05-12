@@ -14,10 +14,10 @@
             {{#each burgers}}
             {{#unless devoured}}
             <li>
-              <p>
-                {{this.id}} -- {{this.burger_name}}
-                <button data-burgerid="{{this.id}}" class="devour-burger">Devour Burger</button>
+              <p class="burger-list-constainer">
+                <span class="burger-list-build">{{this.id}} -- {{this.burger_name}}</span>
               </p>
+              <button data-burgerid="{{this.id}}" class="devour-burger">Devour Burger</button>
             </li>
             {{/unless}}
             {{/each}}
@@ -33,7 +33,7 @@
             {{#each burgers}}
             {{#if devoured}}
             <li>
-              <p>
+              <p class="burger-list-devoured">
                 {{this.id}} -- {{this.burger_name}}
               </p>
             </li>
@@ -49,7 +49,7 @@
   <div class="container-button">
     <h2>Eat-Da-Burger</h2>
     <form id="add-burger">
-      <textarea type="text" name="burger" rows="4" cols="50"></textarea>
+      <textarea type="text" rows="3" cols="50" autofocus></textarea>
       <div class="submit-button">
         <button type="submit" class="btn btn-primary mb-2">Submit</button>
       </div>

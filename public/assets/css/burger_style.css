@@ -23,9 +23,35 @@ li {
   padding: 5px;
   margin: 5px;
   background: #faebd7;
-  width: 350px;
+  width: 450px;
+}
+
+.burger-list-constainer {
+  padding: 5px;
 }
 
 .container-button {
   text-align: center;
+}
+
+.burger-list-build {
+  padding-top: 20px;
+  padding-bottom: 15px;
+  position: absolute;
+  width: 300px;
+  background: green;
+
+}
+
+.devour-burger {
+  border-radius: 8px;
+  margin-left: 315px;
+  /* margin-bottom: 10px; */
+
+}
+
+.burger-list-devoured {
+  padding: 20px;
+  margin: 5px;
+  background: yellow;
 }
