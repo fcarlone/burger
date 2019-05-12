@@ -17,11 +17,10 @@ var orm = {
     });
   },
   insertOne: function (tableName, columnName, values, cb) {
-    console.log()
-    let queryString = `INSERT INTO ${tableName} (${columnName[0]}, ${columnName[1]}) VALUES (${values[0]}, ${values[1]});`;
+    let queryString = `INSERT INTO ${tableName} (${columnName[0]}) VALUES ("${values[0]}");`;
     console.log('insertOne queryString', queryString)
 
-    connection.query("INSERT INTO burgers (burger_name, devoured) VALUES ('NEw Test', false);", values, function (err, result) {
+    connection.query(queryString, values, function (err, result) {
       if (err) {
         throw err;
       }

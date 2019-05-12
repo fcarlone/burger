@@ -31,11 +31,14 @@
     }
     console.log("add new burger", addBurger)
 
-    // Send the POST requestl
-    $.post("/api/burgers", addBurger, function (data) {
-      console.log('burger added', data);
+    // Send the POST request
+    $.ajax("/api/burgers", {
+      type: "POST",
+      data: addBurger
+    }, function () {
+      console.log('burger added');
       // Reload the page to update burger list
-      //location.reload()
+      location.reload()
     })
 
   });
