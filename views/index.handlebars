@@ -49,7 +49,7 @@
   <div class="container-button">
     <h2>Eat-Da-Burger</h2>
     <form id="add-burger">
-      <textarea type="text" rows="3" cols="50" autofocus></textarea>
+      <textarea name="burger" type="text" rows="3" cols="50" autofocus></textarea>
       <div class="submit-button">
         <button type="submit" class="btn btn-primary mb-2">Submit</button>
       </div>
@@ -59,12 +59,13 @@
 </div>
 
 <script type="text/javascript">
+
   // Handle add burger on-submit event
   $("#add-burger").on("submit", function (event) {
     event.preventDefault();
 
     let addBurger = {
-      burger_name: $("#add-burger [name=burger]").val().trim()
+      burger_name: $("#add-burger [name=burger]").val()
 
     }
     console.log("add new burger", addBurger)
@@ -95,8 +96,5 @@
       location.reload();
     });
 
-
-
-  })
-
+  });
 </script>
