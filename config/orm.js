@@ -28,9 +28,9 @@ var orm = {
     });
   },
   updateOne: function (tableName, columnNameValue, condition, cb) {
-    console.log("updateOne variables:", tableName, columnNameValue, condition)
-    columnNameValue = 'devoured'
-    let queryString = `UPDATE ${tableName} SET ${columnNameValue} = true WHERE ${condition};`
+    // console.log("updateOne variables:", tableName, columnNameValue, condition)
+    let columnNameValueKeyName = Object.keys(columnNameValue);
+    let queryString = `UPDATE ${tableName} SET ${columnNameValueKeyName[0]} = true WHERE ${condition};`
     console.log('updateOne queryString', queryString);
 
     connection.query(queryString, function (err, result) {

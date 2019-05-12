@@ -17,7 +17,8 @@
               <p class="burger-list-constainer">
                 <span class="burger-list-build">{{this.id}} -- {{this.burger_name}}</span>
               </p>
-              <button data-burgerid="{{this.id}}" class="devour-burger">Devour Burger</button>
+              <button data-burgerid="{{this.id}}" data-ifdevoured="{{this.devoured}}" class="devour-burger">Devour
+                Burger</button>
             </li>
             {{/unless}}
             {{/each}}
@@ -76,9 +77,8 @@
       data: addBurger
     }, function () {
       console.log('burger added');
-      // Reload the page to update burger list
-      //location.reload();
     });
+    // Reload the page to update burger list
     location.reload();
   });
 
@@ -86,16 +86,24 @@
   $(".devour-burger").on("click", function (event) {
     event.preventDefault();
     let id = $(this).data("burgerid");
+    let ifDevoured = $(this).data("ifdevoured")
     console.log("burger id to update:", id)
+    console.log("burger status:", ifDevoured)
+
+    // Build burger object
+    let newDevouredState = {
+      devoured: ifDevoured
+    };
+    console.log('new devoured state', newDevouredState)
 
     // Send the PUT requst
     $.ajax(`/api/burgers/${id}`, {
-      type: "PUT"
+      type: "PUT",
+      data: newDevouredState
     }, function () {
       console.log('Burger been devoured');
-      // Reload the page to update burger list
-      //location.reload();
     });
+    // Reload the page to update burger list
     location.reload();
   });
 </script>
