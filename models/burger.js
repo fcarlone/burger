@@ -5,7 +5,7 @@ let orm = require("../config/orm.js");
 let burger = {
   selectAll: function (cb) {
     orm.selectAll("burgers", function (res) {
-      console.log('response from orm', res);
+      // console.log('response from orm', res);
       cb(res);
     });
   },
@@ -14,12 +14,11 @@ let burger = {
       cb(result)
     });
   },
-  updateOne: function (columnValues, condition, cb) {
-    orm.updateOne("burgers", columnValues, condition, function (result) {
+  updateOne: function (columnNameValue, condition, cb) {
+    orm.updateOne("burgers", columnNameValue, condition, function (result) {
       cb(result);
     });
   }
-
 };
 
 // Export database functions for the controller

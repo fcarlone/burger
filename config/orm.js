@@ -13,7 +13,7 @@ var orm = {
       if (err) {
         throw err;
       }
-      cb(result);
+      return cb(result);
     });
   },
   insertOne: function (tableName, columnName, values, cb) {
@@ -24,18 +24,20 @@ var orm = {
       if (err) {
         throw err;
       }
-      cb(result);
+      return cb(result);
     });
   },
-  updateOne: function (tableName, columnValues, condition, cb) {
-    let queryString = `UPDATE ${tableName} SET devoured = true WHERE ${condition};`
+  updateOne: function (tableName, columnNameValue, condition, cb) {
+    console.log("updateOne variables:", tableName, columnNameValue, condition)
+    columnNameValue = 'devoured'
+    let queryString = `UPDATE ${tableName} SET ${columnNameValue} = true WHERE ${condition};`
     console.log('updateOne queryString', queryString);
 
     connection.query(queryString, function (err, result) {
       if (err) {
         throw err;
       }
-      cb(result);
+      return cb(result);
     });
   }
 };
