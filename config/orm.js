@@ -24,9 +24,19 @@ var orm = {
       if (err) {
         throw err;
       }
-
       cb(result);
-    })
+    });
+  },
+  updateOne: function (tableName, columnValues, condition, cb) {
+    let queryString = `UPDATE ${tableName} SET devoured = true WHERE ${condition};`
+    console.log('updateOne queryString', queryString);
+
+    connection.query(queryString, function (err, result) {
+      if (err) {
+        throw err;
+      }
+      cb(result);
+    });
   }
 };
 

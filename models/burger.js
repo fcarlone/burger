@@ -13,10 +13,14 @@ let burger = {
     orm.insertOne("burgers", columnName, values, function (result) {
       cb(result)
     });
+  },
+  updateOne: function (columnValues, condition, cb) {
+    orm.updateOne("burgers", columnValues, condition, function (result) {
+      cb(result);
+    });
   }
 
 };
-
 
 // Export database functions for the controller
 module.exports = burger;

@@ -9,6 +9,7 @@
     <p>
       {{this.id}} -- {{this.burger_name}}
     </p>
+    <button data-burgerid="{{this.id}}" class="devour-burger">Devour Burger</button>
   </li>
   {{/each}}
 </ul>
@@ -38,9 +39,27 @@
     }, function () {
       console.log('burger added');
       // Reload the page to update burger list
-      location.reload()
-    })
-
+      location.reload();
+    });
   });
+
+  // Handle devour event - change burger boolean value
+  $(".devour-burger").on("click", function (event) {
+    event.preventDefault();
+    let id = $(this).data("burgerid");
+    console.log("burger id to update:", id)
+
+    // Send the PUT requst
+    $.ajax(`/api/burgers/${id}`, {
+      type: "PUT"
+    }, function () {
+      console.log('Burger been devoured');
+      // Reload the page to update burger list
+      location.reload();
+    });
+
+
+
+  })
 
 </script>

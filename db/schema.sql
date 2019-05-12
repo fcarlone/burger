@@ -11,7 +11,7 @@ CREATE TABLE burgers (
   PRIMARY KEY(id)
 );
 
-INSERT INTO burgers (burger_name, devoured) VALUES ('test this', false);
-INSERT INTO burgers (burger_name) VALUES ('test the orm');
-INSERT INTO burgers (burger_name) VALUES ("test string");
+INSERT INTO burgers (burger_name) VALUES ("Burger 1");
+INSERT INTO burgers (burger_name) VALUES ("Burger 2");
+INSERT INTO burgers (burger_name) VALUES ("Burger 3");
 select * from burgers_db.burgers;
