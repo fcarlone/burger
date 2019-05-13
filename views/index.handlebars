@@ -46,9 +46,11 @@
     </div>
   </div>
 
+
   {{!-- add new burger button --}}
   <div class="container-button">
     <h2>Eat-Da-Burger</h2>
+    <div id="error-message"></div>
     <form id="add-burger">
       <textarea name="burger" type="text" rows="3" cols="50" autofocus></textarea>
       <div class="submit-button">
@@ -58,6 +60,8 @@
   </div>
 
 </div>
+
+
 
 <script type="text/javascript">
 
@@ -69,15 +73,28 @@
       burger_name: $("#add-burger [name=burger]").val()
 
     }
-    console.log("add new burger", addBurger)
 
-    // Send the POST request
-    $.ajax("/api/burgers", {
-      type: "POST",
-      data: addBurger
-    }, function () {
-      console.log('burger added');
-    });
+    console.log('add new burger length', addBurger.burger_name.length);
+
+    if (!addBurger.burger_name) {
+      console.log("length too short")
+      // User message
+      // $("#error-message").append("<p> User Error Message </p>")
+      // alert("User Error Message")
+
+    } else {
+      console.log('continue')
+      console.log("add new burger", addBurger)
+
+      // Send the POST request
+      $.ajax("/api/burgers", {
+        type: "POST",
+        data: addBurger
+      }, function () {
+        console.log('burger added');
+
+      });
+    }
     // Reload the page to update burger list
     location.reload();
   });
