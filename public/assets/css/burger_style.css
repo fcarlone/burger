@@ -1,6 +1,12 @@
+body {
+  background-color: #FFB833;
+}
+
 h1 {
   padding-top: 40px;
   text-align: center;
+  font-family: 'Baloo Bhai', cursive;
+  color: red;
 }
 
 img {
@@ -11,8 +17,9 @@ img {
 }
 
 h3 {
-  padding-left: 50px;
-  text-align: left;
+  text-align: center;
+  font-family: 'Kodchasan', sans-serif;
+  font-weight: 900;
 }
 
 ul {
@@ -22,7 +29,6 @@ ul {
 li {
   padding: 5px;
   margin: 5px;
-  background: #faebd7;
   width: 450px;
 }
 
@@ -39,7 +45,8 @@ li {
   padding-bottom: 15px;
   position: absolute;
   width: 300px;
-  background: green;
+  background: #F5F4F2;
+  padding-left: 5px;
 
 }
 
@@ -57,7 +64,7 @@ li {
 .burger-list-devoured {
   padding: 10px;
   margin: 5px;
-  background: yellow;
+  background: #F5F4F2;
 }
 
 #delete-all-button {
