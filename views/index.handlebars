@@ -42,10 +42,13 @@
             {{/each}}
           </ul>
         </div>
+        <div id="delete-all">
+          <button id="delete-all-button">Delete All Devoured Burgers</button>
+        </div>
       </div>
+
     </div>
   </div>
-
 
   {{!-- add new burger button --}}
   <div class="container-button">
@@ -64,63 +67,79 @@
 
 
 <script type="text/javascript">
+  $(function () {
+    // Handle add burger on-submit event
+    $("#add-burger").on("submit", function (event) {
+      event.preventDefault();
 
-  // Handle add burger on-submit event
-  $("#add-burger").on("submit", function (event) {
-    event.preventDefault();
+      let addBurger = {
+        burger_name: $("#add-burger [name=burger]").val().trim()
+      }
 
-    let addBurger = {
-      burger_name: $("#add-burger [name=burger]").val()
+      console.log('add new burger length', addBurger.burger_name.length);
 
-    }
+      if (!addBurger.burger_name) {
+        console.log("length too short")
+        // User message
+        // $("#error-message").append("<p> User Error Message </p>")
+        // alert("User Error Message")
 
-    console.log('add new burger length', addBurger.burger_name.length);
+      } else {
+        console.log('continue')
+        console.log("add new burger", addBurger)
 
-    if (!addBurger.burger_name) {
-      console.log("length too short")
-      // User message
-      // $("#error-message").append("<p> User Error Message </p>")
-      // alert("User Error Message")
+        // Send the POST request
+        $.ajax("/api/burgers", {
+          type: "POST",
+          data: addBurger
+        }, function () {
+          console.log('burger added');
 
-    } else {
-      console.log('continue')
-      console.log("add new burger", addBurger)
+        });
+      }
+      // Reload the page to update burger list
+      location.reload();
+    });
 
-      // Send the POST request
-      $.ajax("/api/burgers", {
-        type: "POST",
-        data: addBurger
+    // Handle devour event - change burger boolean value
+    $(".devour-burger").on("click", function (event) {
+      event.preventDefault();
+      let id = $(this).data("burgerid");
+      let ifDevoured = $(this).data("ifdevoured")
+      console.log("burger id to update:", id)
+      console.log("burger status:", ifDevoured)
+
+      // Build burger object
+      let newDevouredState = {
+        devoured: ifDevoured
+      };
+      console.log('new devoured state', newDevouredState)
+
+      // Send the PUT requst
+      $.ajax(`/api/burgers/${id}`, {
+        type: "PUT",
+        data: newDevouredState
       }, function () {
-        console.log('burger added');
+        console.log('Burger been devoured');
+      });
+      // Reload the page to update burger list
+      location.reload();
+    });
 
+    const deleteAllDevoured = () => {
+      $("#delete-all-button").on("click", function (event) {
+        console.log("delete all devoured button")
+        event.preventDefault();
+
+        $.ajax("/api/burgers", {
+          type: "DELETE"
+        }).then(function () {
+          console.log("All devoured burgers deleted")
+        })
+        // Reload the page to update burger list
+        location.reload();
       });
     }
-    // Reload the page to update burger list
-    location.reload();
-  });
-
-  // Handle devour event - change burger boolean value
-  $(".devour-burger").on("click", function (event) {
-    event.preventDefault();
-    let id = $(this).data("burgerid");
-    let ifDevoured = $(this).data("ifdevoured")
-    console.log("burger id to update:", id)
-    console.log("burger status:", ifDevoured)
-
-    // Build burger object
-    let newDevouredState = {
-      devoured: ifDevoured
-    };
-    console.log('new devoured state', newDevouredState)
-
-    // Send the PUT requst
-    $.ajax(`/api/burgers/${id}`, {
-      type: "PUT",
-      data: newDevouredState
-    }, function () {
-      console.log('Burger been devoured');
-    });
-    // Reload the page to update burger list
-    location.reload();
+    deleteAllDevoured();
   });
 </script>

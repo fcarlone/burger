@@ -18,6 +18,13 @@ let burger = {
     orm.updateOne("burgers", columnNameValue, condition, function (result) {
       cb(result);
     });
+  },
+  // Added Feature - delete all devoured burgers
+  deleteAllDevoured: function (columnName, cb) {
+    orm.deleteAllDevoured("burgers", columnName, function (res) {
+      console.log('delete all response from orm', res);
+      cb(res)
+    });
   }
 };
 

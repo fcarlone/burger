@@ -39,6 +39,18 @@ var orm = {
       }
       return cb(result);
     });
+  },
+  // Added Feature - delete all devoured burgers
+  deleteAllDevoured: function (tableName, columnName, cb) {
+    let queryString = `DELETE FROM ${tableName} WHERE ${columnName} = true;`;
+    console.log('deleteAllDevoured queryString', queryString);
+
+    connection.query(queryString, function (err, result) {
+      if (err) {
+        throw err;
+      }
+      return cb(result);
+    })
   }
 };
 
