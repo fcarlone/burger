@@ -15,7 +15,7 @@
             {{#unless devoured}}
             <li>
               <p class="burger-list-constainer">
-                <span class="burger-list-build">{{this.id}} -- {{this.burger_name}}</span>
+                <span class="burger-list-build">{{this.id}}. {{this.burger_name}}</span>
               </p>
               <button data-burgerid="{{this.id}}" data-ifdevoured="{{this.devoured}}" class="devour-burger">Devour
                 Burger</button>
@@ -35,7 +35,7 @@
             {{#if devoured}}
             <li>
               <p class="burger-list-devoured">
-                {{this.id}} -- {{this.burger_name}}
+                {{this.id}}. {{this.burger_name}}
               </p>
             </li>
             {{/if}}
@@ -43,7 +43,7 @@
           </ul>
         </div>
         <div id="delete-all">
-          <button id="delete-all-button">Delete All Devoured Burgers</button>
+          <button type="button" class="btn btn-danger" id="delete-all-button">Delete All Devoured Burgers</button>
         </div>
       </div>
 
@@ -68,15 +68,16 @@
 
 <script type="text/javascript">
   $(function () {
+    // Hide 'Delete All Devoured Burgers' button when list if empty
+    //$("#delete-all").hide();
+
     // Handle add burger on-submit event
     $("#add-burger").on("submit", function (event) {
       event.preventDefault();
 
       let addBurger = {
         burger_name: $("#add-burger [name=burger]").val().trim()
-      }
-
-      console.log('add new burger length', addBurger.burger_name.length);
+      };
 
       if (!addBurger.burger_name) {
         console.log("length too short")
@@ -94,7 +95,6 @@
           data: addBurger
         }, function () {
           console.log('burger added');
-
         });
       }
       // Reload the page to update burger list
@@ -141,5 +141,6 @@
       });
     }
     deleteAllDevoured();
+    // checkBurgers();
   });
 </script>

@@ -47,11 +47,19 @@ li {
   border-radius: 8px;
   margin-left: 315px;
   font-size: .80em;
+}
 
+.devour-burger:hover {
+  background-color: grey;
+  color: white;
 }
 
 .burger-list-devoured {
   padding: 10px;
   margin: 5px;
   background: yellow;
+}
+
+#delete-all-button {
+  margin-left: 150px
 }
