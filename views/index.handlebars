@@ -68,9 +68,6 @@
 
 <script type="text/javascript">
   $(function () {
-    // Hide 'Delete All Devoured Burgers' button when list if empty
-    //$("#delete-all").hide();
-
     // Handle add burger on-submit event
     $("#add-burger").on("submit", function (event) {
       event.preventDefault();
@@ -96,6 +93,8 @@
         }, function () {
           console.log('burger added');
         });
+        // Reload the page to update burger list
+        location.reload();
       }
       // Reload the page to update burger list
       location.reload();
@@ -121,6 +120,8 @@
         data: newDevouredState
       }, function () {
         console.log('Burger been devoured');
+        // Reload the page to update burger list
+        location.reload();
       });
       // Reload the page to update burger list
       location.reload();
