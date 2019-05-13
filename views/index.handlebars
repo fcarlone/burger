@@ -64,9 +64,11 @@
 
 </div>
 
-
 <script type="text/javascript">
   $(function () {
+
+    // Hide Delete All Devoured Burgers Button
+    $("#delete-all").hide()
 
     // Handle add burger on-submit event
     $("#add-burger").on("submit", function (event) {
@@ -78,14 +80,7 @@
 
       if (!addBurger.burger_name) {
         console.log("length too short")
-        // User message
-        // $("#error-message").append("<p> User Error Message </p>")
-        // alert("User Error Message")
-
       } else {
-        console.log('continue')
-        console.log("add new burger", addBurger)
-
         // Send the POST request
         $.ajax("/api/burgers", {
           type: "POST",
@@ -103,14 +98,11 @@
       event.preventDefault();
       let id = $(this).data("burgerid");
       let ifDevoured = $(this).data("ifdevoured")
-      console.log("burger id to update:", id)
-      console.log("burger status:", ifDevoured)
 
       // Build burger object
       let newDevouredState = {
         devoured: ifDevoured
       };
-      console.log('new devoured state', newDevouredState)
 
       // Send the PUT requst
       $.ajax(`/api/burgers/${id}`, {
@@ -123,21 +115,30 @@
       location.reload();
     });
 
-    const deleteAllDevoured = () => {
-      $("#delete-all-button").on("click", function (event) {
-        console.log("delete all devoured button")
-        event.preventDefault();
+    // Added Feature - delete all devoured burgers button
+    $("#delete-all-button").on("click", function (event) {
+      console.log("delete all devoured button")
+      event.preventDefault();
 
-        $.ajax("/api/burgers", {
-          type: "DELETE"
-        }).then(function () {
-          console.log("All devoured burgers deleted")
-        })
-        // Reload the page to update burger list
-        location.reload();
+      $.ajax("/api/burgers", {
+        type: "DELETE"
+      }).then(function () {
+        console.log("All devoured burgers deleted")
+      })
+      // Reload the page to update burger list
+      location.reload();
+    });
+
+    // Check if any devoured burgers
+    $.get("/api/burgers", function (data) {
+      console.log('data', data);
+      data.forEach((burger) => {
+        if (burger.devoured) {
+          console.log('true')
+          $("#delete-all").show()
+        }
       });
-    };
-    deleteAllDevoured();
-    // checkBurgers();
+    });
+
   });
 </script>

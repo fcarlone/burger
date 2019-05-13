@@ -5,7 +5,6 @@ let orm = require("../config/orm.js");
 let burger = {
   selectAll: function (cb) {
     orm.selectAll("burgers", function (res) {
-      // console.log('response from orm', res);
       cb(res);
     });
   },
@@ -22,7 +21,6 @@ let burger = {
   // Added Feature - delete all devoured burgers
   deleteAllDevoured: function (columnName, cb) {
     orm.deleteAllDevoured("burgers", columnName, function (res) {
-      console.log('delete all response from orm', res);
       cb(res)
     });
   }

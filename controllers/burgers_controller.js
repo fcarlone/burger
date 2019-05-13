@@ -9,14 +9,12 @@ router.get("/", function (req, res) {
     let burgerObject = {
       burgers: data
     };
-    // console.log('burger object from controller', burgerObject)
     res.render("index", burgerObject)
   })
 });
 
 // POST route
 router.post("/api/burgers", function (req, res) {
-  // console.log('controller body', req.body)
   burger.insertOne(["burger_name"], [req.body.burger_name], function (err, result) {
     res.json({ id: result });
   })
@@ -25,7 +23,6 @@ router.post("/api/burgers", function (req, res) {
 // PUT route
 router.put("/api/burgers/:id", function (req, res) {
   let condition = `id=${req.params.id}`;
-  console.log('condition', condition)
 
   burger.updateOne({
     devoured: req.body.devoured
@@ -42,7 +39,6 @@ router.put("/api/burgers/:id", function (req, res) {
 router.delete("/api/burgers", function (req, res) {
   burger.deleteAllDevoured(["devoured"], function (result) {
     if (result.affectedRows === 0) {
-      console.log('controller rows affected', result.affectedRows)
       return res.status(404).end();
     } else {
       res.status(200).end();
@@ -50,6 +46,12 @@ router.delete("/api/burgers", function (req, res) {
   })
 });
 
+router.get("/api/burgers", function (req, res) {
+  burger.selectAll(function (data) {
+    console.log('Display burger data:', data)
+    res.json(data)
+  })
+});
 
 // Export routes for server.js
 module.exports = router;

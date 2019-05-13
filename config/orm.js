@@ -18,7 +18,6 @@ var orm = {
   },
   insertOne: function (tableName, columnName, values, cb) {
     let queryString = `INSERT INTO ${tableName} (${columnName[0]}) VALUES ("${values[0]}");`;
-    console.log('insertOne queryString', queryString)
 
     connection.query(queryString, values, function (err, result) {
       if (err) {
@@ -28,10 +27,8 @@ var orm = {
     });
   },
   updateOne: function (tableName, columnNameValue, condition, cb) {
-    // console.log("updateOne variables:", tableName, columnNameValue, condition)
     let columnNameValueKeyName = Object.keys(columnNameValue);
     let queryString = `UPDATE ${tableName} SET ${columnNameValueKeyName[0]} = true WHERE ${condition};`
-    console.log('updateOne queryString', queryString);
 
     connection.query(queryString, function (err, result) {
       if (err) {
@@ -43,7 +40,6 @@ var orm = {
   // Added Feature - delete all devoured burgers
   deleteAllDevoured: function (tableName, columnName, cb) {
     let queryString = `DELETE FROM ${tableName} WHERE ${columnName} = true;`;
-    console.log('deleteAllDevoured queryString', queryString);
 
     connection.query(queryString, function (err, result) {
       if (err) {
