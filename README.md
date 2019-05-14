@@ -1,10 +1,12 @@
 # Eat-Da-Burger - Express & MySQL
 
-## Full-stack application that lets a user input a burger they want to try and can mark them "devoured" once eaten.
+## Full-stack application that lets a user input a burger they want to try and mark them "devoured" once eaten.
 
 ### About the Application:  
-This application was designed following the Model–View–Controller (MVC) framework - an architectural pattern that organize the application's code based on its purpose.  
+This application was designed following the Model–View–Controller (MVC) framework - an architectural pattern that organize the application's code based on its purpose.  Object-relational mapping (ORM) was used to access and manipulate the database.  ORM mapping is a technique for storing, retrieving, updating and deleting from an object-oriented program in a relational database.
 
+### Application Instructions:  
+When you find a burger you want to try, add the burger's name to the Build-Da-Burger field, then click Submit.  Submitted burgers will appear under the "Built Burgers" section. Once you eaten a “Built Burger,” click on the “devoured” button, a list of devoured burgers will be posted under the “Devoured Burgers” section.
 
 ### Installation Instructions:  
 1. Clone or download the GitHub repository
