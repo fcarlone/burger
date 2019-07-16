@@ -23,7 +23,7 @@ When you find a burger you want to try, add the burger's name to the Build-Da-Bu
 ### Software/libraries used for this application:
 Node.js - used for developing the server-side of the application  
 Express.js - used for building the web application and creating the application's API  
-JavaScript - for the applications logic  
+JavaScript - for application logic  
 Bootstrap - front-end framework used to create modern websites and making the application responsive   
 jQuery - for HTML/DOM manipulation  
 Handlebars - to generate the HTML
